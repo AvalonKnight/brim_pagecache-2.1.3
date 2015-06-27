@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Brim LLC Commercial Extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Brim LLC Commercial Extension License
+ * that is bundled with this package in the file Brim-LLC-Magento-License.pdf.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.brimllc.com/license
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to support@brimllc.com so we can send you a copy immediately.
+ *
+ * @category   Brim
+ * @package    Brim_PageCache
+ * @copyright  Copyright (c) 2011-2012 Brim LLC
+ * @license    http://ecommerce.brimllc.com/license
+ */
+-->
+<config>
+    <tabs>
+        <brim translate="label" module="brim_pagecache">
+            <label>Brim Extensions</label>
+            <sort_order>300</sort_order>
+        </brim>
+    </tabs>
+    <sections>
+        <brim_pagecache translate="label" module="brim_pagecache">
+            <class>separator-top</class>
+            <label>Full Page Cache</label>
+            <tab>brim</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>50</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <settings translate="label">
+                    <label>Settings</label>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <sort_order>100</sort_order>
+                    <fields>
+                        <enabled translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </enabled>
+                        <enable_block_updates translate="label">
+                            <label>Enable Block Updates</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Turn off for improved performance. However recently viewed products, compare products, etc. blocks will not function properly when disabled.</comment>
+                        </enable_block_updates>
+                        <cache_block_updates translate="label">
+                            <label>Cache Block Updates</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>25</sort_order>
+                            <depends><enable_block_updates>1</enable_block_updates></depends>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Allow unique block updates to be cache. Pages will load faster but use much more disk space.</comment>
+                        </cache_block_updates>
+                        <enable_minify_html translate="label">
+                            <label>Enable HTML Minification</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Turn on to minify HTML before caching. Saves on storage, useful for 10,000+ products.</comment>
+                        </enable_minify_html>
+                        <invalidate_clean translate="label">
+                            <label>Invalidate Action</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>brim_pagecache/adminhtml_system_config_source_invalidate</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>
+                                Only affects mass product updates and changes to attributes. Invalidate is the recommended setting.
+                            </comment>
+                        </invalidate_clean>
+                        <expires translate="label">
+                            <label>Page Expires (seconds)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Number of seconds a page is valid in the cache.</comment>
+                        </expires>
+                        <debug translate="label">
+                            <label>Debug</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enable server side debugging.</comment>
+                        </debug>
+                        <debug_response translate="label">
+                            <label>Response Debugging</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enable response header debugging.</comment>
+                        </debug_response>
+                    </fields>
+                </settings>
+                <help>
+                    <label>Help</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1000</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <comment><![CDATA[
+                        <h3>Get help when you need it</h3>
+                        <p>
+                            Checkout our <strong><a target="_blank" href="https://brimllc.zendesk.com/forums">Knowledge Base</a></strong>
+                            for answers to some common questions or <strong><a target="_blank" href="https://brimllc.zendesk.com/">Submit a Ticket</a></strong>
+                            if you need additional help.
+                        </p>
+                        <p>
+                            Make sure to follow <strong><a target="_blank" title="Brim on Twitter" href="http://twitter.com/brimllc">@brimllc</a></strong>
+                            on Twitter to not miss out on important product updates, news, and tips! </p>
+                        </p>
+                    ]]></comment>
+                </help>
+            </groups>
+        </brim_pagecache>
+    </sections>
+</config>

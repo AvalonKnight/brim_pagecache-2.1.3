@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Brim LLC Commercial Extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Brim LLC Commercial Extension License
+ * that is bundled with this package in the file Brim-LLC-Magento-License.pdf.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.brimllc.com/license
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to support@brimllc.com so we can send you a copy immediately.
+ *
+ * @category   Brim
+ * @package    Brim_PageCache
+ * @copyright  Copyright (c) 2011-2012 Brim LLC
+ * @license    http://ecommerce.brimllc.com/license
+ */
+-->
+<layout version="0.1.0">
+
+    <brim_pagecache_default>
+        <reference name="root">
+            <action method="setCachePageFlag"><cache>true</cache></action>
+            <!-- Example of per page expires -->
+            <!--<action method="setCachePageExpires"><data>3600</data></action>-->
+            <action method="setCachePageConditions"><data>logged_out,empty_cart,no_messages</data></action>
+            <action method="setCachePageConditions" ifconfig="brim_pagecache/settings/enable_block_updates"><data>no_messages</data></action>
+        </reference>
+    </brim_pagecache_default>
+
+    <default>
+        <reference name="header">
+            <!-- Welcome is not an actual block so need to set the welcome message before the block is rendered -->
+            <action method="setDynamicBlockCall"><execute>brim_pagecache/container_welcome::setWelcomeWrapper</execute></action>
+        </reference>
+        <reference name="top.links">
+            <action method="setDynamicBlockContainer"><container>brim_pagecache/container_accountlinks</container></action>
+        </reference>
+        <reference name="cart_sidebar">
+            <action method="setDynamicBlockContainer"><container>brim_pagecache/container_cart</container></action>
+        </reference>
+        <reference name="wishlist_sidebar">
+            <action method="setDynamicBlockContainer"><container>brim_pagecache/container_wishlist</container></action>
+        </reference>
+        <reference name="catalog.compare.sidebar">
+            <action method="setDynamicBlockContainer"><container>brim_pagecache/container_compared</container></action>
+        </reference>
+        <reference name="right.reports.product.viewed">
+            <action method="setDynamicBlockContainer"><container>brim_pagecache/container_recentlyviewed</container></action>
+        </reference>
+    </default>
+
+    <cms_page translate="label">
+        <update handle="brim_pagecache_default" />
+    </cms_page>
+
+    <catalog_category_default translate="label">
+        <update handle="brim_pagecache_default" />
+    </catalog_category_default>
+
+    <catalog_category_layered translate="label">
+        <update handle="brim_pagecache_default" />
+    </catalog_category_layered>
+
+    <catalog_category_layered_nochildren translate="label">
+        <update handle="brim_pagecache_default" />
+
+        <reference name="left.reports.product.viewed">
+            <action method="setDynamicBlockContainer"><container>brim_pagecache/container_recentlyviewed</container></action>
+        </reference>
+    </catalog_category_layered_nochildren>
+
+    <catalog_product_view translate="label">
+        <update handle="brim_pagecache_default" />
+    </catalog_product_view>
+
+</layout>
